@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
-import { AboutPage, PageTest, HomePage } from "@/components";
+import { AboutPage, PageTest, HomePage } from "@/pages";
 
 const routes = [
   { path: '/', component: HomePage },
