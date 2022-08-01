@@ -1,9 +1,8 @@
 <template>
   <page-header></page-header>
-  <div>
+  <div class="content">
     <router-view></router-view>
   </div>
-  <div style="height: 800px;"></div>
   <page-footer></page-footer>
 </template>
 
@@ -27,5 +26,16 @@ export default {
 
 body {
   background-color: #121212;
+}
+
+#app {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100vh;
+}
+
+.content {
+  flex: 1;
 }
 </style>
