@@ -1,6 +1,7 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import { router } from './router'
+import { store } from './store'
 import PrimeVue from 'primevue/config';
 import InputText from 'primevue/inputtext';
 import Password from 'primevue/password';
@@ -13,6 +14,7 @@ import 'primeicons/primeicons.css'
 createApp(App)
   .use(router)
   .use(PrimeVue)
+  .use(store)
   .component('InputText', InputText)
   .component('Password', Password)
   .component('Button', Button)
