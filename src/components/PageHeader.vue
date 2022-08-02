@@ -9,11 +9,11 @@
     <template #end>
       <Avatar icon="pi pi-user" size="large" shape="circle" @click="toggle" />
       <OverlayPanel ref="op">
-        <div class="menu" v-if="!$store.state.user">
+        <div class="menu" v-if="!user">
           <Button label="Log In" @click="navigateTo('login')" class="p-button-text" />
           <Button label="Register" @click="navigateTo('registration')" class="p-button-text" />
         </div>
-        <div class="menu" v-if="$store.state.user">
+        <div class="menu" v-if="user">
           <Button label="Profile" @click="{}" class="p-button-text" />
           <Button label="Log Out" @click="$store.commit('logout')" class="p-button-text" />
         </div>
@@ -26,6 +26,7 @@
 import Menubar from 'primevue/menubar';
 import Avatar from 'primevue/avatar';
 import OverlayPanel from 'primevue/overlaypanel';
+import { mapState } from 'vuex'
 
 export default {
   components: { Menubar, Avatar, OverlayPanel },
@@ -59,6 +60,12 @@ export default {
       this.$router.push(`/${path}`)
     }
   },
+
+  computed: {
+    ...mapState({
+      user: state => state.user.user,
+    }),
+  }
 }
 </script>
 
