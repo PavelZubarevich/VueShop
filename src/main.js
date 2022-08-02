@@ -10,6 +10,7 @@ import Message from 'primevue/message';
 
 import 'primevue/resources/themes/arya-orange/theme.css'
 import 'primeicons/primeicons.css'
+import 'primeflex/primeflex.css'
 
 createApp(App)
   .use(router)
