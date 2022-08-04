@@ -7,13 +7,15 @@
       </div>
     </template>
     <template #end>
-      <Avatar icon="pi pi-user" size="large" shape="circle" @click="toggle" />
+      <i class="pi pi-shopping-bag header__cartImage mr-4" v-badge.warning="cartItems.length || null"
+        @click="$router.push('/cart')" />
+      <Avatar icon=" pi pi-user" size="large" shape="circle" @click="toggle" />
       <OverlayPanel ref="op">
-        <div class="menu" v-if="!$store.state.user">
+        <div class="menu" v-if="!user">
           <Button label="Log In" @click="navigateTo('login')" class="p-button-text" />
           <Button label="Register" @click="navigateTo('registration')" class="p-button-text" />
         </div>
-        <div class="menu" v-if="$store.state.user">
+        <div class="menu" v-if="user">
           <Button label="Profile" @click="{}" class="p-button-text" />
           <Button label="Log Out" @click="$store.commit('logout')" class="p-button-text" />
         </div>
@@ -26,6 +28,7 @@
 import Menubar from 'primevue/menubar';
 import Avatar from 'primevue/avatar';
 import OverlayPanel from 'primevue/overlaypanel';
+import { mapState } from 'vuex'
 
 export default {
   components: { Menubar, Avatar, OverlayPanel },
@@ -36,12 +39,6 @@ export default {
         {
           label: 'About',
           to: 'about',
-          class: 'focus-disable',
-          icon: 'disabled'
-        },
-        {
-          label: 'Test',
-          to: '/test',
           class: 'focus-disable',
           icon: 'disabled'
         }
@@ -59,6 +56,13 @@ export default {
       this.$router.push(`/${path}`)
     }
   },
+
+  computed: {
+    ...mapState({
+      user: state => state.user.user,
+      cartItems: state => state.cart.items
+    }),
+  }
 }
 </script>
 
@@ -103,6 +107,11 @@ export default {
   &__logoLabel {
     font-size: 16px;
     transition: 0.4s;
+  }
+
+  &__cartImage {
+    font-size: 24px !important;
+    cursor: pointer;
   }
 }
 

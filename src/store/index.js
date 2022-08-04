@@ -1,19 +1,9 @@
 import { createStore } from 'vuex'
+import { user, cart } from './modules'
 
 export const store = createStore({
-  state() {
-    return {
-      user: null
-    }
-  },
-  mutations: {
-    authorize(state, newUser) {
-      state.user = newUser
-    },
-
-    logout(state) {
-      state.user = null
-    }
+  modules: {
+    user,
+    cart
   }
 })
-

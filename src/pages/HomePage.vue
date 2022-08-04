@@ -23,7 +23,8 @@
               </div>
               <div class="card__bottom">
                 <span class="card__price">${{ slotProps.data.price }}</span>
-                <Button icon="pi pi-shopping-cart" :disabled="slotProps.data.inventoryStatus === 'OUTOFSTOCK'"></Button>
+                <Button icon="pi pi-shopping-cart" :disabled="slotProps.data.inventoryStatus === 'OUTOFSTOCK'"
+                  @click="addItemToCart(slotProps.data)" />
               </div>
             </div>
           </div>
@@ -47,6 +48,12 @@ export default {
     }
   },
 
+  methods: {
+    addItemToCart(data) {
+      this.$store.commit('addItemToCart', data)
+    }
+  },
+
   mounted() {
     this.products = data.data
   }
@@ -67,8 +74,9 @@ export default {
   &__title {
     font-size: 35px;
     text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.8);
+    color: var(--text-color);
     margin-bottom: 10px;
+    font-family: var(--font-family);
   }
 }
 
