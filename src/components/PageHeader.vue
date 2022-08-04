@@ -7,7 +7,9 @@
       </div>
     </template>
     <template #end>
-      <Avatar icon="pi pi-user" size="large" shape="circle" @click="toggle" />
+      <i class="pi pi-shopping-bag header__cartImage mr-4" v-badge.warning="cartItems.length || null"
+        @click="$router.push('/cart')" />
+      <Avatar icon=" pi pi-user" size="large" shape="circle" @click="toggle" />
       <OverlayPanel ref="op">
         <div class="menu" v-if="!user">
           <Button label="Log In" @click="navigateTo('login')" class="p-button-text" />
@@ -39,12 +41,6 @@ export default {
           to: 'about',
           class: 'focus-disable',
           icon: 'disabled'
-        },
-        {
-          label: 'Test',
-          to: '/test',
-          class: 'focus-disable',
-          icon: 'disabled'
         }
       ]
     }
@@ -64,6 +60,7 @@ export default {
   computed: {
     ...mapState({
       user: state => state.user.user,
+      cartItems: state => state.cart.items
     }),
   }
 }
@@ -110,6 +107,11 @@ export default {
   &__logoLabel {
     font-size: 16px;
     transition: 0.4s;
+  }
+
+  &__cartImage {
+    font-size: 24px !important;
+    cursor: pointer;
   }
 }
 
